@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+    server:
+      image: christmas-server
+      ports: 
+        - 3001:3001
+      env_file: ./server/.env
+      container_name: server-api
+    client:
+      image: christmas-client
+      ports:
+        - 3000:3000
+      depends_on: 
+        - server
+      stdin_open: true
