@@ -17,7 +17,7 @@ jobs:
         env:
           ENV_FILE: ${{ secrets.ENV_FILE }}
         run: |
-          echo $QA_ENV_FILE | base64 --decode > ./server/.env
+          echo $ENV_FILE | base64 --decode > ./server/.env
       - name: docker compose
         run: docker-compose up -d
       - name: check running containers
