@@ -1,10 +1,10 @@
 {
-  "name": "santa-app",
+  "name": "santa-server",
   "version": "0.0.1",
   "description": "A simple Node app built on Express, instantly up and running.",
   "main": "server.js",
   "scripts": {
-    "start": "node -r dotenv/config server.js",
+    "start": "node server.js",
     "dev": "nodemon server.js",
     "fix": "eslint . --fix",
     "lint": "eslint .",
@@ -25,12 +25,6 @@
     "eslint": "^7.8.1",
     "jest": "^26.4.2",
     "nodemon": "^2.0.4"
-  },
-  "engines": {
-    "node": "8.x"
-  },
-  "repository": {
-    "url": "https://github.com/alj-devops/santa-app"
   },
   "license": "MIT",
   "keywords": [

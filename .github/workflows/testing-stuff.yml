@@ -3,22 +3,13 @@ name: Deploy
 on:
   push:
     branches:
-      - master
-  pull_request:
-    branches:
-      - master
+      - test-branch
 
 jobs:
   test_pipeline:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - name: Create env file.
-        env:
-          ENV_FILE: ${{ secrets.ENV_FILE }}
-        run: |
-          echo "$ENV_FILE"
-          echo "$ENV_FILE" | base64 --decode > server/.env
       - name: docker compose
         run: docker-compose up -d
       - name: check running containers
