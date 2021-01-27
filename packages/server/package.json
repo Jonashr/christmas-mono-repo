@@ -1,5 +1,5 @@
 {
-  "name": "santa-server",
+  "name": "server",
   "version": "0.0.1",
   "description": "A simple Node app built on Express, instantly up and running.",
   "main": "server.js",
@@ -23,7 +23,6 @@
   },
   "devDependencies": {
     "eslint": "^7.8.1",
-    "jest": "^26.4.2",
     "nodemon": "^2.0.4"
   },
   "license": "MIT",
