@@ -10,7 +10,17 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - name: docker compose
-        run: docker-compose up -d
-      - name: check running containers
-        run: docker ps -a
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+      - name: yarn install
+        run: yarn install
+      - name: test
+        run: yarn test
+      - name: e2e tests
+        uses: cypress-io/github-action@v2
+        with:
+          command: yarn client-test:e2e
+          start: yarn start
+          wait-on: http://localhost:3000
+      
