@@ -15,8 +15,8 @@ jobs:
           node-version: '14.x'
       - name: yarn install
         run: yarn install
-      - name: test
-        run: yarn test
+      - name: test backend
+        run: yarn server-test
       - name: e2e tests
         uses: cypress-io/github-action@v2
         with:
