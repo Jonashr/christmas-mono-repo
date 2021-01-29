@@ -8,6 +8,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use(morgan('dev'))
 app.use('/wishlist', wishlistRouter)
 
+app.get('/ping', (request, response) => {
+  return response.json('pong')
+})
+
 app.use(express.static('public'))
 
 const listener = app.listen(process.env.PORT || 3001, function () {

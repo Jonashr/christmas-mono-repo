@@ -25,11 +25,22 @@ jobs:
 
       - name: test backend
         run: yarn server-test
-        
+
       - name: e2e tests
         uses: cypress-io/github-action@v2
         with:
           command: yarn client-test:e2e
           start: yarn start-prod
           wait-on: http://localhost:3000
-      
+
+      - name: Push to heroku
+        if: ${{ github.event.name == 'push'}}
+        uses: akhileshns/heroku-deploy@v3.8.9
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "christmas-mono-repo"
+          heroku_email: jonashorvei1@gmail.com
+          healthcheck: "https://christmas-mono-repo.herokuapp.com/ping"
+          checkstring: "pong"
+          delay: 5
+          rollbackonhealthcheckfailed: true   
