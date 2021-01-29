@@ -34,7 +34,7 @@ jobs:
           wait-on: http://localhost:3000
 
       - name: Push to heroku
-        if: ${{ github.event.name == 'push'}}
+        if: ${{ github.event_name == 'push'}}
         uses: akhileshns/heroku-deploy@v3.8.9
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
@@ -43,4 +43,12 @@ jobs:
           healthcheck: "https://christmas-mono-repo.herokuapp.com/ping"
           checkstring: "pong"
           delay: 5
-          rollbackonhealthcheckfailed: true   
+          rollbackonhealthcheckfailed: true  
+      
+      - uses: actions/checkout@v2
+
+      - name: Bump version and push tag
+        if: ${{ github.event_name == 'push'}}
+        uses: anothrNick/github-tag-action@1.33.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
