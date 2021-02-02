@@ -37,7 +37,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           command: yarn client-test:e2e
-          start: yarn server-prod
+          start: yarn start-prod
           wait-on: http://localhost:3000
 
       - name: Push to heroku
