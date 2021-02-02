@@ -47,6 +47,10 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "christmas-mono-repo"
           heroku_email: jonashorvei1@gmail.com
+          healthcheck: "https://christmas-mono-repo.herokuapp.com/ping"
+          checkstring: "pong"
+          delay: 5
+          rollbackonhealthcheckfailed: true
       
       - uses: actions/checkout@v2
 
