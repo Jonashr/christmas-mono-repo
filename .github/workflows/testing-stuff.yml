@@ -1,9 +1,13 @@
-name: Deploy
+name: CI/CD Pipeline
 
 on:
   push:
     branches:
       - test-branch
+  pull_request:
+    branches:
+      - master
+    types: [opened, synchronize]
 
 jobs:
   test_pipeline:
@@ -16,6 +20,9 @@ jobs:
 
       - name: yarn install
         run: yarn install
+      
+      - name: yarn build
+        run: yarn build:client
 
       - name: eslint server
         run: yarn eslint-server
@@ -30,7 +37,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           command: yarn client-test:e2e
-          start: yarn start-prod
+          start: yarn server-prod
           wait-on: http://localhost:3000
 
       - name: Push to heroku
@@ -48,3 +55,4 @@ jobs:
         uses: anothrNick/github-tag-action@1.33.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
